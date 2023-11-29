@@ -6,7 +6,7 @@
 /*   By: thibault <thibault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:08:58 by thibault          #+#    #+#             */
-/*   Updated: 2023/11/29 17:10:06 by thibault         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:42:34 by thibault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        std::cout << "Usage: " << argv[0] << " <log_level>" << std::endl;
+        std::cout << YELLOW "[Usage] " << argv[0] << " <log_level>" EOC << std::endl;
         return 1;
     }
 
