@@ -6,13 +6,25 @@
 /*   By: thibault <thibault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:21:00 by thibault          #+#    #+#             */
-/*   Updated: 2023/11/29 17:25:10 by thibault         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:21:52 by thibault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Harl.hpp"
 
 Harl::Harl() {
+	logFunctions[0].level = "DEBUG";
+	logFunctions[0].func = &Harl::debug;
+
+	logFunctions[1].level = "INFO";
+	logFunctions[1].func = &Harl::info;
+
+	logFunctions[2].level = "WARNING";
+	logFunctions[2].func = &Harl::warning;
+
+	logFunctions[3].level = "ERROR";
+	logFunctions[3].func = &Harl::error;
+
 	std::cout << WHITE "Harl" GREEN " created" EOC <<  std::endl;
 }
 
@@ -21,17 +33,13 @@ Harl::~Harl() {
 }
 
 void Harl::complain(std::string level) {
-	if (level == "DEBUG") {
-		Harl::debug();
-	} else if (level == "INFO") {
-		Harl::info();
-	} else if (level == "WARNING") {
-		Harl::warning();
-	} else if (level == "ERROR") {
-		Harl::error();
-	} else {
-		std::cout << RED "Unknown complaint level" WHITE ": " << level << EOC << std::endl;
+	for (int i = 0; i < 4; ++i) {
+		if (logFunctions[i].level == level) {
+			(this->*(logFunctions[i].func))();
+			return;
+		}
 	}
+	std::cout << RED "Unknown complaint level" WHITE ": " << level << EOC << std::endl;
 }
 
 void Harl::debug() {

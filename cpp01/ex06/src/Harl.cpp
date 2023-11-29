@@ -6,7 +6,7 @@
 /*   By: thibault <thibault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:08:57 by thibault          #+#    #+#             */
-/*   Updated: 2023/11/29 17:34:42 by thibault         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:37:58 by thibault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Harl::~Harl() {
 }
 
 void Harl::complain(const std::string& level) {
-	enum LogLevel { DEBUG, INFO, WARNING, ERROR };
+	enum LogLevel { DEBUG, INFO, WARNING, ERROR, UNKNOWN };
 
 	LogLevel logLevel;
 
@@ -35,7 +35,6 @@ void Harl::complain(const std::string& level) {
 		logLevel = ERROR;
 	} else {
 		std::cout << RED "[ Probably complaining about insignificant problems ]\n" << EOC << std::endl;
-		return;
 	}
 
 	for (int i = 0; i <= ERROR; ++i) {
@@ -53,6 +52,8 @@ void Harl::complain(const std::string& level) {
 				case ERROR:
 					std::cout << YELLOW "[ ERROR ]" WHITE "\nThis is unacceptable! I want to speak to the manager now.\n" EOC << std::endl;
 					break;
+				default:
+					return;
 			}
 		}
 	}
